@@ -62,11 +62,9 @@ def git_push():
         print(retLine(1) + \
               'Some error occured while pushing the code.\nContact the instructor with a screenshot of message\n' + \
                 Exception + retLine(1))
-        
     else:
         print('Yay! Successfully uploaded' + retLine())
 
-#test
 # Check the value of the first argument passed to the script
 if sys.argv[1]=='test':
 
