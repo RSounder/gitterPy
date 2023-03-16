@@ -56,11 +56,11 @@ def git_push():
         # Use GitPython to push changes to the remote repository
         origin = repo.remote(name='origin')
         origin.push()
-    except Warning:
+    except Exception:
         # Print an error message if an error occurs during the push
         print(retLine(1) + \
               'Some error occured while pushing the code.\nContact the instructor with a screenshot of message\n' + \
-                Warning + retLine(1))
+                Exception + retLine(1))
         
     else:
         print('Yay! Successfully uploaded' + retLine())
