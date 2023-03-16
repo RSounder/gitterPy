@@ -55,6 +55,7 @@ def git_push():
         repo.index.commit(COMMIT_MESSAGE)
         # Use GitPython to push changes to the remote repository
         origin = repo.remote(name='origin')
+        origin.pull()
         origin.push()
     except Exception:
         # Print an error message if an error occurs during the push
