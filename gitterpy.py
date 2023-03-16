@@ -19,9 +19,12 @@ def import_or_install(package):
 # If not, install them
 import_or_install('GitPython')
 import_or_install('pytest')
+import_or_install('colorama')
 
 # Import after checking installation
 from git import Repo
+from colorama import init, Fore, Back, Style
+init(autoreset=True)
 
 # Assign the current date and time to the 'timestamp' variable
 timestamp = datetime.datetime.now()
@@ -42,8 +45,8 @@ def run_pytest(cmd):
         subprocess.run(cmd)
     except subprocess.CalledProcessError:
         # Print an error message if an error occurs during the pytest run
-        print(retLine(1) + \
-              'Some error occured while running pytest. Contact the instructor with a screenshot of message\n' + \
+        print(retLine(1) + Style.BRIGHT + Back.YELLOW + Fore.RED + \
+              'Some error occured while running pytest. Contact the instructor with a screenshot of message\033[0;0m\n' + \
                 traceback.format_exc() + retLine(1))
 
 # Define a function to push changes to the remote Git repository
@@ -59,11 +62,11 @@ def git_push():
         origin.push()
     except Exception:
         # Print an error message if an error occurs during the push
-        print(retLine(1) + \
+        print(retLine(1) + Style.BRIGHT + Back.YELLOW + Fore.RED + \
               'Some error occured while pushing the code.\nContact the instructor with a screenshot of message\n' + \
                 Exception + retLine(1))
     else:
-        print('Yay! Successfully uploaded' + retLine())
+        print('\033[2;31;43m Yay! Successfully uploaded \033[0;0m' + retLine())
 
 # Check the value of the first argument passed to the script
 if sys.argv[1]=='test':
@@ -77,9 +80,9 @@ if sys.argv[1]=='test':
         run_pytest('pytest')
 
     else:
-        raise Exception(retLine(1) + \
-                        'You must be running some fancy OS. Contact the instructor with a screenshot of message\n' + \
-                            platform.system() + retLine(1))
+        print(retLine(1) + Style.BRIGHT + Back.YELLOW + Fore.RED + \
+                'You must be running some fancy OS. Contact the instructor with a screenshot of message\n' + \
+                    platform.system() + retLine(1))
 
 # If the first argument is 'upload', call the 'git_push()' function to push changes to the remote repository
 elif sys.argv[1]=='upload':
