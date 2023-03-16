@@ -4,6 +4,7 @@ import os
 import pip
 import sys
 import platform
+import warnings
 
 # Define a function to check whether a required package is installed
 # If it isn't installed, use pip to install it
@@ -17,6 +18,9 @@ def import_or_install(package):
 # If not, install them
 import_or_install('GitPython')
 import_or_install('pytest')
+
+# Treat warnings as errors
+warnings.filterwarnings("error")
 
 # Import necessary modules
 from git import Repo
