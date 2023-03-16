@@ -66,6 +66,7 @@ def git_push():
     else:
         print('Yay! Successfully uploaded' + retLine())
 
+#test
 # Check the value of the first argument passed to the script
 if sys.argv[1]=='test':
 
